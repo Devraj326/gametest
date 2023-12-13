@@ -1,0 +1,65 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page 2</title>
+</head>
+<body>
+    <h1>Score Page</h1>
+    <div id="scoreDisplay"></div>
+    
+<a href="Index.html"><button class="but">Retry</button></a>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+    // Retrieve the score from the query parameter
+    const urlParams = new URLSearchParams(window.location.search);
+    const score = urlParams.get('score');
+
+    // Display the score on the page if it is not null
+    const scoreDisplay = document.getElementById('scoreDisplay');
+    if (score !== null) {
+        scoreDisplay.textContent = `Your score is: ${score}`;
+    } else {
+        scoreDisplay.textContent = 'You lost the game HAHA 🤣🤣';
+    }
+});
+    </script>
+</body>
+</html> -->
+
+
+
+
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page 2</title>
+</head>
+<body>
+    <h1>Score Page</h1>
+    <div id="scoreDisplay"></div>
+    
+    <!-- Retry button with a link to Index.html -->
+    <a href="Index.html"><button class="but">Retry</button></a>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Retrieve the score from the query parameter
+            const urlParams = new URLSearchParams(window.location.search);
+            const score = urlParams.get('score');
+
+            // Display the score on the page
+            const scoreDisplay = document.getElementById('scoreDisplay');
+            if (typeof score === 'number') {
+                scoreDisplay.textContent = `Your score is: ${score}`;
+            } else if (score !== null) {
+                scoreDisplay.textContent = `Your score is: ${score || '0 - You lost the game HAHA 🤣🤣'}`; // Display the appropriate message for game loss
+            }
+        });
+    </script>
+</body>
+</html>
