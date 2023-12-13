@@ -3,7 +3,7 @@
     box-sizing: border-box;
 }
 body {
-    background-color: rgba(33,32,33,255);
+    background-color: #252525;
     color: #fff;
     font-family: "Muli", sans-serif;
     display: flex;

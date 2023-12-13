@@ -9,24 +9,48 @@
 <body>
     <div class="main">    
         <h1>Score Page</h1>
-        <div id="scoreDisplay"></div>
+        <div class="score"></div>
+        <div id="result"></div>
         <a href="Index.html">
             <button class="custom-btn btn-6"><span>Retry</span></button>        </a>
 </div>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // Retrieve the score from the query parameter
-            const urlParams = new URLSearchParams(window.location.search);
-            const score = urlParams.get('score');
+<script>
+    const score = localStorage.getItem('score');
+const result = document.querySelector('#result');
+const scoreDisplay = document.querySelector('.score');
 
-            // Display the score on the page
-            const scoreDisplay = document.getElementById('scoreDisplay');
-            if (typeof score === 'number') {
-                scoreDisplay.textContent = `Your score is: ${score}`;
-            } else if (score !== null) {
-                scoreDisplay.textContent = `Your score is: ${score || '0 - You lost the game HAHA 🤣🤣'}`; // Display the appropriate message for game loss
-            }
-        });
-    </script>
+const unsafePhrases = [
+  'You should reconsider your life choices.',
+  'Is this the best you can do? Pathetic!',
+  'Maybe Minesweeper is not your game.',
+  'You lost again? How surprising.',
+  'Your brain must be as empty as this minefield.'
+  // Add more psychologically unsafe phrases as needed
+];
+const safePhrases = [
+  'Congratulations on playing Minesweeper!',
+  'You gave it a good try! Keep it up!',
+  'Every failure is a step towards success.',
+  'You are learning and improving. Great effort!',
+  'Minesweeper can be challenging, but you are doing well!'
+  // Add more positive and encouraging phrases as needed
+];
+
+
+if (score === null) {
+  // Display a random psychologically unsafe phrase
+  const randomPhrase = unsafePhrases[Math.floor(Math.random() * unsafePhrases.length)];
+  result.innerHTML = `<br>${randomPhrase}`;
+} else {
+  // Display the score
+  const randomPhrase = safePhrases[Math.floor(Math.random() * safePhrases.length)];
+  scoreDisplay.innerHTML = `
+  <br>${randomPhrase}
+  <br>
+  Score: ${score}`;
+}
+
+
+</script>
 </body>
 </html>

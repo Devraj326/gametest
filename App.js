@@ -451,51 +451,12 @@
 
 
 
-const playerName = document.getElementById('name');
-const playerNickName = document.getElementById('nickname');
-
-const player = {
-  name: '',
-  nickName: ''
-}
-
-if (playerName && playerNickName) {
-  playerName.addEventListener('input', (e) => {
-    player.name = e.target.value;
-    console.log(player.name);
-    localStorage.setItem('playerName', player.name);
-  });
-
-  playerNickName.addEventListener('input', (e) => {
-    player.nickName = e.target.value;
-    console.log(player.nickName);
-    localStorage.setItem('playerNickname', player.nickName);
-  });
-
- 
-  const play = document.getElementById('Play');
-
-  play.addEventListener('click', (e) => {
-    if (player.name.trim() === '' || player.nickName.trim() === '') {
-      e.preventDefault();
-      alert('Please provide input for both Name and Nickname.');
-      return;
-    }
-  });}
-
-  const playername = localStorage.getItem('playerName');
-  const playernickname = localStorage.getItem('playerNickname');
-
-  console.log(localStorage.getItem('playerName, player.nickName'));
-
-
-
 
 document.addEventListener('DOMContentLoaded', () => {
-  const grid = document.querySelector('.grid');
-  const flagsLeft = document.querySelector('#flags-left');
-  const result = document.querySelector('#result');
-  const timerDisplay = document.querySelector('#timer');
+  const grid = document.getElementById('grid');
+  const flagsLeft = document.getElementById('flags-left');
+  const timerDisplay = document.getElementById('timer');
+  localStorage.removeItem('score');
 
   let width = 10;
   let bombAmount = 5;
@@ -503,7 +464,6 @@ document.addEventListener('DOMContentLoaded', () => {
   let squares = [];
   let isGameOver = false;
   let timeRemaining = 120; // 2 minutes in seconds
-
 
   // Timer function
   function startTimer() {
@@ -578,8 +538,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   createBoard();
 
-
-
   // add Flag with right click
   function addFlag(square) {
     if (isGameOver) return;
@@ -595,6 +553,7 @@ document.addEventListener('DOMContentLoaded', () => {
         square.innerHTML = '';
         flags--;
         flagsLeft.innerHTML = bombAmount - flags;
+        checkForWin(); // Check for win after updating flags
       }
     }
   }
@@ -620,6 +579,7 @@ document.addEventListener('DOMContentLoaded', () => {
       checkSquare(square, currentId);
     }
     square.classList.add('checked');
+    checkForWin(); // Check for win after clicking
   }
 
   // check neighboring squares once square is clicked
@@ -671,18 +631,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 10);
   }
 
-  // game over
+  // Game over function
   function gameOver(square) {
-    result.innerHTML = 'BOOM! Game Over!';
-    isGameOver = true;
+    // Redirect to pg2.html
+    window.location.href = 'pg2.html';
 
-    // Check for win and set the score accordingly
-    let score = isWinner() ? timeRemaining : ' You lost the game HAHA 🤣🤣';
-
-    // Redirect to pg2.html with the calculated score
-    window.location.href = `pg2.html?score=${score}`;
-
-    // show ALL the bombs
+    // Show ALL the bombs
     squares.forEach((square) => {
       if (square.classList.contains('bomb')) {
         square.innerHTML = '💣';
@@ -692,49 +646,33 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // check for win
+  // Check for win function
   function checkForWin() {
     let matches = 0;
     let score = 0;
-
+  
     for (let i = 0; i < squares.length; i++) {
       if (squares[i].classList.contains('flag') && squares[i].classList.contains('bomb')) {
         matches++;
-        score++;
-      }
-      if (matches === bombAmount) {
-        result.innerHTML = `YOU WIN! score is  ${score}`;
-        isGameOver = true;
-        window.location.href = `pg2.html?score=${score}`;
+        score++; // Increment the score only if it's a bomb and has a flag
       }
     }
-  }
-
-  function isWinner() {
-    let matches = 0;
-
-    for (let i = 0; i < squares.length; i++) {
-      if (squares[i].classList.contains('flag') && squares[i].classList.contains('bomb')) {
-        matches++;
-      }
+  
+    if (matches === bombAmount) {
+      isGameOver = true;
+      localStorage.setItem('score', score);
+      window.location.href = 'pg2.html';
     }
-
-    return matches === bombAmount;
   }
-
+  // Debug statement to check the initial value of 'score'
+  console.log('Initial Score:', localStorage.getItem('score') || 0);
 });
 
+document.addEventListener('DOMContentLoaded', () => {
+  const playerName = localStorage.getItem('playerName');
+  const playerNickName = localStorage.getItem('playerNickname');
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+  // Display the stored values
+  const gameName = document.getElementById('gameName');
+  gameName.textContent = `Welcome, ${playerName} (${playerNickName})!`;
+});

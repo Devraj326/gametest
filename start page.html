@@ -44,13 +44,41 @@
      <div  class="submit-btn"><a class="btnbtn" id="Play" href="Index.html"  target="_blank"><span class="btn">Play</span></a> </div>
      
     </div>  
-   </div>  
-   <script src="App.js"></script>
+   </div> 
+   <!-- <script src="App.js"></script> -->
    <script src="script.js"></script>
+   <script>
+    const playerNameInput = document.getElementById('name');
+const playerNickNameInput = document.getElementById('nickname');
+
+if (playerNameInput && playerNickNameInput) {
+  playerNameInput.addEventListener('input', (e) => {
+    const playerName = e.target.value;
+    localStorage.setItem('playerName', playerName);
+  });
+
+  playerNickNameInput.addEventListener('input', (e) => {
+    const playerNickName = e.target.value;
+    localStorage.setItem('playerNickname', playerNickName);
+  });
+
+  const playButton = document.getElementById('play');
+  playButton.addEventListener('click', (e) => {
+    const playerName = playerNameInput.value.trim();
+    const playerNickName = playerNickNameInput.value.trim();
+
+    if (playerName === '' || playerNickName === '') {
+      e.preventDefault();
+      alert('Please provide input for both Name and Nickname.');
+      return;
+    }
+  });
+}
+   </script>
   </body>  
  </html>
 <!-- partial -->
-  <script  src="./App.js"></script>
+  <!-- <script  src="./App.js"></script> -->
   <script  src="./script.js"></script>
 
 </body>
