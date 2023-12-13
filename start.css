@@ -3,7 +3,7 @@
     box-sizing: border-box;
 }
 body {
-    background-color: steelblue;
+    background-color: rgba(33,32,33,255);
     color: #fff;
     font-family: "Muli", sans-serif;
     display: flex;
@@ -15,9 +15,9 @@ body {
     margin: 0;
 }
 .container {
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: rgba(146, 146, 146, 0.27);
     padding: 20px 40px;
-    border-radius: 5px;
+    border-radius: 5px; 
 }
 .container h1 {
     text-align: center;
@@ -216,5 +216,50 @@ a {
   }
 
 .btnbtn{
-    margin-top: 430px;
+    margin-top: 470px;
+}
+
+span{
+    color: white;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 40px;
+    margin-top: 10px;
+  
+  }
+  
+  #flag{
+    color: white;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 40px;
+    margin-top: 10px;
+  
+  }
+  
+  nav{
+        margin-bottom: 200px;
+        margin-right: 1200px;
+  
+  
+  }
+
+
+.image img{
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 450px;
+}
+  
+.ins button{
+    position: absolute;
+    right: 250px;
+    top: 60px;
+    border: transparent;
+    padding: 10px;
+    width: 200px;
+    font-size: 18px;
+    border-radius: 5px;
+    font-family: 'Roboto Mono', monospace;
+    background-color: rgb(96, 96, 96);
+    color: white ;
 }

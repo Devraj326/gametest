@@ -498,7 +498,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const timerDisplay = document.querySelector('#timer');
 
   let width = 10;
-  let bombAmount = 2;
+  let bombAmount = 5;
   let flags = 0;
   let squares = [];
   let isGameOver = false;

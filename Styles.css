@@ -1,7 +1,15 @@
+body{
+  background-color: rgba(33,32,33,255);
+}
+
 .container {
     width: 500px;
     align-content: center;
-  }
+    background-color: rgba(33,32,33,255);
+    padding-left: 68vh;
+    padding-top: 15vh;
+    color: white;
+    }
   
   .grid {
     height: 400px;
@@ -77,4 +85,16 @@
     margin-top: 5px;
     color: #e76346;
   }
-  
+ 
+span{
+  color: white;
+  font-family: 'Roboto Mono', monospace;
+  font-size: 40px;
+
+}
+
+#flag{
+  color: white;
+  font-family: 'Roboto Mono', monospace;
+  font-size: 40px;}
+
